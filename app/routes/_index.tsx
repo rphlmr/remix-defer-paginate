@@ -5,7 +5,7 @@ import {
 } from "@remix-run/node";
 import { faker } from "@faker-js/faker";
 import { Await, Form, useLoaderData } from "@remix-run/react";
-import { Suspense } from "react";
+import { Suspense, useId } from "react";
 
 export const meta: V2_MetaFunction = () => {
 	return [
@@ -49,6 +49,7 @@ export async function loader({ request }: DataFunctionArgs) {
 }
 
 export default function Index() {
+	const key = useId();
 	const { sales, page } = useLoaderData<typeof loader>();
 
 	console.log(page);
@@ -77,6 +78,7 @@ export default function Index() {
 					</thead>
 
 					<Suspense
+						key={key}
 						fallback={
 							<tbody>
 								<tr>
@@ -116,7 +118,7 @@ export default function Index() {
 					}}
 				>
 					{page > 1 && (
-						<Form reloadDocument>
+						<Form>
 							<button name="page" value={page - 1}>
 								Prev
 							</button>
@@ -126,7 +128,7 @@ export default function Index() {
 						<Await resolve={sales}>
 							{(sales) =>
 								sales.hasNext && (
-									<Form reloadDocument>
+									<Form>
 										<button name="page" value={page + 1}>
 											Next
 										</button>
