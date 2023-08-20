@@ -118,7 +118,7 @@ export default function Index() {
 					}}
 				>
 					{page > 1 && (
-						<Form>
+						<Form reloadDocument>
 							<button name="page" value={page - 1}>
 								Prev
 							</button>
@@ -128,7 +128,7 @@ export default function Index() {
 						<Await resolve={sales}>
 							{(sales) =>
 								sales.hasNext && (
-									<Form>
+									<Form reloadDocument>
 										<button name="page" value={page + 1}>
 											Next
 										</button>
