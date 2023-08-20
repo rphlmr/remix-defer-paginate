@@ -1,6 +1,12 @@
-# Welcome to Remix!
+# Remix defer on navigation
 
 -   [Remix Docs](https://remix.run/docs)
+
+
+
+https://github.com/rphlmr/remix-defer-paginate/assets/20722140/e1cd38cc-f8f6-43d1-9d89-3409d82ef12d
+
+
 
 ## Development
 
