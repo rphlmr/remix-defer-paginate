@@ -1,18 +1,15 @@
 import { useSearchParams } from "@remix-run/react";
-import { useEffect } from "react";
 import { useSalesFetcher } from "./resources.sales";
 
 export default function Index() {
-	const [searchParams, setSearchParams] = useSearchParams();
-	const { fetchSales, isLoading, sales } = useSalesFetcher();
+	const [, setSearchParams] = useSearchParams();
 
-	const page = Number(searchParams.get("page")) || 1;
-
-	console.log(isLoading, sales);
-
-	useEffect(() => {
-		fetchSales(page);
-	}, [fetchSales, page]);
+	// this and the component below could be combined together in resources.sales (full stack component).
+	// the exported SalesTable could takes in props what this hook takes in.
+	const { isLoading, sales, page } = useSalesFetcher({
+		searchParam: "page",
+		defaultValue: 1,
+	});
 
 	return (
 		<div
